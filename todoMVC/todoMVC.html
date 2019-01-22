@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html>
 <title>todoMVC</title>
+<head>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
 <body>
 
-    <input type="text" class="newtodo" @keyup.enter="addtodo">
-    <div></div>
-
+    
+    <div class="todomvc" id="test">
+        {{message}} <br>
+        
+        <input type="text" class="newtodo" v-model='ntodo' @keyup.enter="addtodo">
+        <ul>
+            <li v-for='todo in todos'>
+                <input type="text" v-model='todo.value'>
+                <!-- {{todo.value}} -->
+                -<a v-if='todo.compeleted' @click="setcompelete(todo)" href="#">已完成</a>
+                <a v-if='!todo.compeleted' @click="setcompelete(todo)" href="#">未完成</a>-<a href="#" @click="deltodo(todo)">刪除</a>
+            </li>
+        </ul>
+        <a @click="showAll()" href="#">All</a>
+        <a @click="showActive()" href="#">Active</a>
+        <a @click="showCompeleted()" href="#">Compeleted</a>
+        <a @click="allCompeleted()" href="#">allCompeleted</a>
+        <a @click="delCompeleted()" href="#">delCompeleted</a>
+    </div>
+    <script type="text/javascript" src="todoMVC.js"></script>
 </body>
 
 </html>
